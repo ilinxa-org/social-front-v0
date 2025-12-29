@@ -141,7 +141,8 @@ const EventDetail = () => {
 
   useEffect(() => {
     // Simulate API fetch
-    const eventData = mockEventDetails[id || "1"] || mockEventDetails["1"];
+    const eventId = Array.isArray(id) ? id[0] : id || "1";
+    const eventData = mockEventDetails[eventId] || mockEventDetails["1"];
     setEvent(eventData);
   }, [id]);
 
