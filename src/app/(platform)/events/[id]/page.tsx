@@ -11,66 +11,10 @@ import { Progress } from "@/components/ui/progress";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import type { EventDetail, EventStatus } from "@/types/eventsType";
+import { mockEventDetails } from "@/data/eventsData";
 
 
-interface EventDetail {
-  id: string;
-  title: string;
-  description: string;
-  fullDescription: string;
-  type: string;
-  date: string;
-  endDate?: string;
-  time: string;
-  location: string;
-  address: string;
-  capacity: number;
-  registered: number;
-  image: string;
-  speakers: { name: string; title: string; image: string }[];
-  schedule: { time: string; title: string; description: string }[];
-  organizer: { name: string; phone: string; email: string };
-  requirements: string[];
-  featured?: boolean;
-}
-
-// Mock event data
-const mockEventDetails: Record<string, EventDetail> = {
-  "1": {
-    id: "1",
-    title: "Sürdürülebilir Kentleşme Konferansı 2025",
-    description: "Türkiye'nin önde gelen şehir plancıları ve çevre uzmanlarının katılımıyla düzenlenen yıllık konferans.",
-    fullDescription: `Sürdürülebilir Kentleşme Konferansı 2025, Türkiye'nin en kapsamlı kentsel gelişim etkinliğidir. Bu yıl "Geleceğin Şehirleri: Yeşil, Akıllı ve Kapsayıcı" temasıyla düzenlenen konferans, ulusal ve uluslararası uzmanları bir araya getirmektedir.
-
-Konferansta ele alınacak konular arasında iklim değişikliğine uyum, akıllı şehir teknolojileri, sosyal kapsayıcılık, sürdürülebilir ulaşım ve yeşil altyapı yer almaktadır. Katılımcılar, interaktif çalıştaylar, panel tartışmaları ve networking oturumlarına katılma fırsatı bulacaktır.`,
-    type: "Konferans",
-    date: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
-    time: "09:00 - 18:00",
-    location: "İstanbul Kongre Merkezi",
-    address: "Darülbedai Caddesi No:3, 34367 Harbiye/Şişli/İstanbul",
-    capacity: 500,
-    registered: 423,
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200",
-    speakers: [
-      { name: "Prof. Dr. Ahmet Yılmaz", title: "Şehir Plancısı", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200" },
-      { name: "Dr. Elif Kaya", title: "Çevre Mühendisi", image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200" },
-      { name: "Mehmet Demir", title: "Akıllı Şehir Uzmanı", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200" }
-    ],
-    schedule: [
-      { time: "09:00", title: "Kayıt ve Karşılama Kahvaltısı", description: "Katılımcı kayıtları ve networking" },
-      { time: "10:00", title: "Açılış Konuşması", description: "Dernek Başkanı tarafından açılış" },
-      { time: "11:00", title: "Panel: Geleceğin Şehirleri", description: "Uzman panelimizle interaktif tartışma" },
-      { time: "13:00", title: "Öğle Yemeği", description: "Networking lunch" },
-      { time: "14:30", title: "Çalıştaylar", description: "Paralel çalıştay oturumları" },
-      { time: "17:00", title: "Kapanış ve Networking", description: "Sonuç bildirisi ve kokteyl" }
-    ],
-    organizer: { name: "Etkinlik Koordinatörlüğü", phone: "+90 212 555 0123", email: "etkinlik@tkb.org.tr" },
-    requirements: ["Laptop", "Kimlik belgesi", "Kayıt onay e-postası"],
-    featured: true
-  }
-};
-
-type EventStatus = "expired" | "ongoing" | "upcoming" | "open" | "full" | "lastSpots";
 
 const getEventStatus = (event: EventDetail): EventStatus => {
   const now = new Date();

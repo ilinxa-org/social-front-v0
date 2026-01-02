@@ -4,101 +4,20 @@ import { useState, useEffect } from "react";
 import { 
   Calendar, Clock, User, ArrowLeft, Share2, 
   Facebook, Twitter, Linkedin, Copy, Check,
-  ChevronRight, Eye, BookOpen
+   Eye, BookOpen
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { categoryColors, formatDate, NewsType } from "@/components/public/sections/news/NewsCard";
+import { categoryColors, formatDate } from "@/components/public/sections/news/NewsCard";
 import Link from "next/link";
+import { NewsDetail } from "@/types/newsTypes";
+import { mockNewsDetails, relatedNews } from "@/data/newsData";
 // import { Separator } from "@/components/ui/separator";
 
 
 
-interface NewsDetail extends NewsType {
-  content: string;
-  tags: string[];
-}
 
-const mockNewsDetails: Record<string, NewsDetail> = {
-  "1": {
-    id: "1",
-    title: "Türkiye'nin Yeşil Şehir Dönüşümü: 2025 Hedefleri Açıklandı",
-    excerpt: "Çevre ve Şehircilik Bakanlığı, 2025 yılına kadar 10 büyükşehirde yeşil alan oranını %40'a çıkarmayı hedefleyen kapsamlı planını açıkladı.",
-    content: `
-## Yeşil Şehir Vizyonu
 
-Çevre ve Şehircilik Bakanlığı, Türkiye'nin en kapsamlı yeşil şehir dönüşüm programını başlattı. Program kapsamında 2025 yılına kadar 10 büyükşehirde yeşil alan oranının %40'a çıkarılması hedefleniyor.
-
-### Programın Ana Başlıkları
-
-**1. Kentsel Yeşil Alan Artışı**
-Tüm yeni yapı projelerinde minimum %30 yeşil alan zorunluluğu getirildi. Mevcut yapılarda ise çatı bahçesi ve dikey bahçe teşvikleri uygulanacak.
-
-**2. Karbon Nötr Mahalleler**
-İstanbul, Ankara ve İzmir'de pilot "sıfır karbon mahalle" projeleri başlatılacak. Bu mahalleler yenilenebilir enerji, sürdürülebilir ulaşım ve yeşil altyapı ile donatılacak.
-
-**3. Kentsel Orman Koridorları**
-Şehir içi ulaşımı yeşil koridorlarla bağlayan "Urban Forest Network" projesi hayata geçirilecek. Bu koridor sistemleri hem biyoçeşitliliği destekleyecek hem de şehirlerin ısı adası etkisini azaltacak.
-
-### Finansman ve Teşvikler
-
-Program için toplam 50 milyar TL'lik bütçe ayrıldı. Özel sektör yatırımları için çeşitli vergi indirimleri ve düşük faizli kredi imkanları sunulacak.
-
-> "Bu program, Türkiye'nin sürdürülebilir şehircilik alanında dünya liderleri arasına girmesini sağlayacak." - Çevre ve Şehircilik Bakanı
-
-### Uygulama Takvimi
-
-- **2024 Q1:** Pilot projelerin başlatılması
-- **2024 Q3:** İlk yeşil koridor açılışları
-- **2025 Q2:** 10 büyükşehirde tam uygulama
-- **2026:** Program değerlendirmesi ve ikinci faz planlaması
-
-Bu tarihi adım, Türkiye'nin Paris İklim Anlaşması taahhütlerini yerine getirmesinde önemli bir rol oynayacak.
-    `,
-    category: "Sürdürülebilirlik",
-    author: "Ayşe Yılmaz",
-    date: new Date().toISOString(),
-    readTime: 8,
-    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200",
-    featured: true,
-    views: 2453,
-    tags: ["Yeşil Şehir", "Sürdürülebilirlik", "Çevre", "2025 Hedefleri"]
-  }
-};
-
-// Related news
-const relatedNews: NewsType[] = [
-  {
-    id: "6",
-    title: "Uluslararası Şehir Planlama Ödülü Türkiye'ye",
-    excerpt: "Ankara Büyükşehir Belediyesi'nin 'Yeşil Koridor' projesi ödül kazandı.",
-    category: "Araştırma",
-    author: "Dr. Selin Arslan",
-    date: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000).toISOString(),
-    readTime: 7,
-    image: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800"
-  },
-  {
-    id: "12",
-    title: "Bisiklet Altyapısı Yatırımları Hız Kazanıyor",
-    excerpt: "81 ilde toplam 5.000 km bisiklet yolu hedefi.",
-    category: "Sürdürülebilirlik",
-    author: "Murat Çelik",
-    date: new Date(Date.now() - 22 * 24 * 60 * 60 * 1000).toISOString(),
-    readTime: 4,
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800"
-  },
-  {
-    id: "10",
-    title: "Kentsel Isı Adası Etkisine Karşı Yeni Stratejiler",
-    excerpt: "Yeşil çatı ve soğutucu kaplama çözümleri test ediliyor.",
-    category: "Araştırma",
-    author: "Prof. Dr. Hakan Öz",
-    date: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000).toISOString(),
-    readTime: 11,
-    image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=800"
-  }
-];
 
 const NewsDetailPage = () => {
   const { id } = useParams();

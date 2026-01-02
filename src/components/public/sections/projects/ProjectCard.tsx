@@ -1,24 +1,11 @@
 "use client";
+import { ProjectCardProps } from "@/types/projectsType";
 import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Calendar, Building2 } from "lucide-react";
 import Link from "next/link";
 
 
-export interface Project {
-  id: string;
-  title: string;
-  category: string;
-  location: string;
-  year: string;
-  image: string;
-  description: string;
-  status: "completed" | "ongoing" | "planned";
-}
 
-interface ProjectCardProps {
-  project: Project;
-  index: number;
-}
 
 const statusLabels = {
   completed: "Tamamlandı",

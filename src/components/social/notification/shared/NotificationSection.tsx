@@ -4,7 +4,8 @@ import { ChevronDown, ChevronUp, LucideIcon } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import { NotificationItem, NotificationItemData } from "./NotificationItem";
+import { NotificationItem } from "./NotificationItem";
+import { NotificationItemData } from "@/types/notificationType";
 
 interface NotificationSectionProps {
   title: string;

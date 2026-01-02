@@ -4,28 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
 import Link from "next/link";
+import { EventCardProps, EventStatus, EventType } from "@/types/eventsType";
 
-export interface EventType {
-  id: string;
-  title: string;
-  description: string;
-  type: string;
-  date: string;
-  endDate?: string;
-  time: string;
-  location: string;
-  capacity: number;
-  registered: number;
-  image: string;
-  featured?: boolean;
-}
-
-interface EventCardProps {
-  event: EventType;
-  index: number;
-}
-
-type EventStatus = "expired" | "ongoing" | "upcoming" | "open" | "full" | "lastSpots";
 
 const getEventStatus = (event: EventType): EventStatus => {
   const now = new Date();

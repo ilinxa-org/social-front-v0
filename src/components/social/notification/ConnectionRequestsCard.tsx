@@ -5,54 +5,8 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { motion, AnimatePresence } from "framer-motion";
+import { mockRequests } from "@/data/notificationsData";
 
-interface ConnectionRequest {
-  id: string;
-  user: {
-    name: string;
-    username: string;
-    avatar: string;
-    title?: string;
-    mutualConnections?: number;
-  };
-  timestamp: string;
-}
-
-const mockRequests: ConnectionRequest[] = [
-  {
-    id: "1",
-    user: {
-      name: "Ahmet Yıldız",
-      username: "ahmet_yildiz",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-      title: "Yazılım Mühendisi",
-      mutualConnections: 12,
-    },
-    timestamp: "2 saat önce",
-  },
-  {
-    id: "2",
-    user: {
-      name: "Zeynep Kaya",
-      username: "zeynep_kaya",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-      title: "Mimar",
-      mutualConnections: 5,
-    },
-    timestamp: "5 saat önce",
-  },
-  {
-    id: "3",
-    user: {
-      name: "Can Öztürk",
-      username: "can_ozturk",
-      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100",
-      title: "Şehir Plancısı",
-      mutualConnections: 8,
-    },
-    timestamp: "1 gün önce",
-  },
-];
 
 export function ConnectionRequestsCard() {
   const [isOpen, setIsOpen] = useState(true);

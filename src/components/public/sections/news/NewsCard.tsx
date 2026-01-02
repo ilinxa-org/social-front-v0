@@ -2,25 +2,8 @@
 import { Calendar, Clock, User, ArrowRight, Eye } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { NewsCardProps } from "@/types/newsTypes";
 
-export interface NewsType {
-  id: string;
-  title: string;
-  excerpt: string;
-  content?: string;
-  category: string;
-  author: string;
-  date: string;
-  readTime: number;
-  image: string;
-  featured?: boolean;
-  views?: number;
-}
-
-interface NewsCardProps {
-  news: NewsType;
-  variant?: "featured" | "large" | "medium" | "small" | "list";
-}
 
 const categoryColors: Record<string, string> = {
   "Kentsel Dönüşüm": "bg-primary/10 text-primary",

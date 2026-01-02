@@ -1,55 +1,6 @@
 import { LucideIcon, Heart, MessageCircle, AtSign, UserCheck, Megaphone, Star, AlertCircle, Calendar, Shield, AlertTriangle, Settings, CheckCircle, Users } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-
-// All possible notification types
-export type NotificationType = 
-  | "connection_accepted"
-  | "like"
-  | "comment"
-  | "mention"
-  | "platform_announcement"
-  | "platform_feature"
-  | "platform_important"
-  | "event_reminder"
-  | "event_invitation"
-  | "event_update"
-  | "network_activity"
-  | "system_security"
-  | "system_action"
-  | "system_update"
-  | "system_success";
-
-export interface NotificationItemData {
-  id: string;
-  type: NotificationType;
-  isRead: boolean;
-  timestamp: string;
-  // User info (for user-related notifications)
-  user?: {
-    name: string;
-    avatar: string;
-  };
-  // Content fields
-  content?: string;
-  title?: string;
-  message?: string;
-  commentText?: string;
-  postPreview?: string;
-  postImage?: string;
-  // Event specific
-  eventDate?: string;
-  eventTime?: string;
-  eventLocation?: string;
-  eventAttendees?: number;
-  // Action
-  actionLabel?: string;
-  link?: string;
-}
-
-interface NotificationItemProps {
-  notification: NotificationItemData;
-  onAction?: (notification: NotificationItemData) => void;
-}
+import { NotificationItemProps, NotificationType } from "@/types/notificationType";
 
 // Type configurations - simplified with semantic colors
 const typeConfig: Record<NotificationType, {

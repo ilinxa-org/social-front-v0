@@ -2,70 +2,8 @@ import { Building2, TrendingUp, Star, MessageSquare, Users, Calendar } from "luc
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { mockNotifications } from "@/data/notificationsData";
 
-interface BusinessNotif {
-  id: string;
-  type: "review" | "inquiry" | "follower" | "stats" | "event";
-  title: string;
-  message: string;
-  user?: {
-    name: string;
-    avatar: string;
-  };
-  timestamp: string;
-  isRead: boolean;
-}
-
-const mockNotifications: BusinessNotif[] = [
-  {
-    id: "1",
-    type: "review",
-    title: "Yeni Değerlendirme",
-    message: "İşletmeniz 5 yıldız aldı: 'Harika bir hizmet, kesinlikle tavsiye ederim!'",
-    user: {
-      name: "Mehmet Yılmaz",
-      avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100",
-    },
-    timestamp: "1 saat önce",
-    isRead: false,
-  },
-  {
-    id: "2",
-    type: "inquiry",
-    title: "Yeni Mesaj",
-    message: "Hizmetleriniz hakkında bilgi almak istiyorum. Fiyat teklifi alabilir miyim?",
-    user: {
-      name: "Ayşe Kara",
-      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100",
-    },
-    timestamp: "3 saat önce",
-    isRead: false,
-  },
-  {
-    id: "3",
-    type: "follower",
-    title: "Yeni Takipçiler",
-    message: "Bu hafta 15 yeni kişi işletmenizi takip etmeye başladı.",
-    timestamp: "Bugün",
-    isRead: false,
-  },
-  {
-    id: "4",
-    type: "stats",
-    title: "Haftalık Rapor",
-    message: "Profiliniz bu hafta %25 daha fazla görüntülendi. Detaylı raporu inceleyin.",
-    timestamp: "Dün",
-    isRead: true,
-  },
-  {
-    id: "5",
-    type: "event",
-    title: "Etkinlik Hatırlatması",
-    message: "Kayıt olduğunuz 'Sürdürülebilir İş Uygulamaları' semineri yarın başlıyor.",
-    timestamp: "Dün",
-    isRead: true,
-  },
-];
 
 const typeIcons: Record<string, { icon: typeof Building2; color: string }> = {
   review: { icon: Star, color: "text-yellow-500" },
@@ -79,7 +17,7 @@ export function BusinessNotificationsTab() {
   return (
     <div className="space-y-4">
       {/* Stats Summary */}
-      <Card className="bg-gradient-to-r from-primary/10 to-primary/5">
+      <Card className="bg-linear-to-r from-primary/10 to-primary/5">
         <CardContent className="pt-6">
           <div className="grid grid-cols-3 gap-4 text-center">
             <div>
