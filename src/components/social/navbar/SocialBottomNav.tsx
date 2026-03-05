@@ -12,7 +12,7 @@ interface NavItem {
 }
 
 const navItems: NavItem[] = [
-  { icon: Home, label: "Ana Sayfa", path: "/social" },
+  { icon: Home, label: "Ana Sayfa", path: "/social/home" },
   { icon: Search, label: "Keşfet", path: "/social/explore" },
   { icon: PlusSquare, label: "Paylaş", path: "/social/post" },
   { icon: Bell, label: "Bildirimler", path: "/social/notifications", badge: 5 },
